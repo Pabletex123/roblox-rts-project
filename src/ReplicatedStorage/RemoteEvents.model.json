@@ -1,0 +1,41 @@
+{
+  "className": "Folder",
+  "children": [
+    {
+      "name": "OrdenMoverUnidad",
+      "className": "RemoteEvent"
+    },
+    {
+      "name": "OrdenAtacarUnidad",
+      "className": "RemoteEvent"
+    },
+    {
+      "name": "OrdenMinarUnidad",
+      "className": "RemoteEvent"
+    },
+    {
+      "name": "InvocarUnidad",
+      "className": "RemoteEvent"
+    },
+    {
+      "name": "OpenSummonUI",
+      "className": "RemoteEvent"
+    },
+    {
+      "name": "ActualizarCristales",
+      "className": "RemoteEvent"
+    },
+    {
+      "name": "MinarRemoteEvent",
+      "className": "RemoteEvent"
+    },
+    {
+      "name": "InvocarModelo",
+      "className": "RemoteEvent"
+    },
+    {
+      "name": "AgregarPersonajeUI",
+      "className": "RemoteEvent"
+    }
+  ]
+}

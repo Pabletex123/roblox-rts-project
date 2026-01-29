@@ -1,0 +1,15 @@
+# Node / herramientas
+node_modules/
+npm-debug.log
+
+# Rojo / Roblox Studio
+*.rbxl
+*.rbxl.lock
+*.rbxlx
+
+# Archivos temporales
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
