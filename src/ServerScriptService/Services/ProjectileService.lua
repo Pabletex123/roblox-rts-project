@@ -1,10 +1,10 @@
---Script para que las unidades lanzen los proyectiles (dependiendo de cual sea cada una(falta hacer))
+--Script para que se creen los proyectiles 
 local RunService = game:GetService("RunService")--obtener el servicio de ejecución
 local projectilesFolder = game.ServerStorage.Projectiles --Acceder a la cartpeta de proyectiles
 
 local ProjectileService = {} -- Crear la tabla
 
-function ProjectileService.Launch(origin, targetPos, projectileName, stats)
+function ProjectileService.Launch(origin, targetPos, projectileName, stats, unidadOrigen)
 	local template = projectilesFolder:FindFirstChild(projectileName)--Obtener la platilla del proyectil (flecha,boladefuego,etc)
 	if not template then return end
 
@@ -15,7 +15,34 @@ function ProjectileService.Launch(origin, targetPos, projectileName, stats)
 	projectile.Anchored = true
 	projectile.CFrame = CFrame.new(origin, origin + direction)
 	projectile.Parent = workspace
+	local spawnTime = tick()
+	local hitConnection
+	hitConnection = projectile.Touched:Connect(function(hit)
+    	local model = hit:FindFirstAncestorOfClass("Model")
+    	if not model then return end
 
+    	local humanoid = model:FindFirstChildOfClass("Humanoid")
+    	if not humanoid then return end
+		local ownerId = unidadOrigen:GetAttribute("Owner")
+		
+
+
+		local timeAlive = tick() - spawnTime
+
+		-- 🚫 Inmunidad temporal SOLO para aliados
+		if timeAlive < 1 then
+    		if model == unidadOrigen then return end
+    		if model:GetAttribute("Owner") == ownerId then return end
+		end
+
+    	humanoid:TakeDamage(stats.damage)
+
+    	hitConnection:Disconnect()
+    	projectile:Destroy()
+end)
+
+
+	
 	local velocity = direction * stats.speed
 	local position = origin
 	local traveled = 0

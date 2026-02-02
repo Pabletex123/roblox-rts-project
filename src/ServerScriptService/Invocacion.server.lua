@@ -94,6 +94,9 @@ invocarUnidadEvento.OnServerEvent:Connect(function(jugador, unidadData)
 					local rangoAtaque = 6 -- Puedes ajustarlo por tipo de unidad
 					-- requerir cada modulescript dentro de NivelesUnidades 
 				local moduloUnidad = require(NivelesUnidades:FindFirstChild(modeloNombre))--Buscar las estadisticas y habilidades especiales en los niveles dependiendo la unidad
+					copia:SetAttribute("TipoAtaque", moduloUnidad.Niveles[0].TipoAtaque or "Melee") -- debe ser "Rango" para proyectil
+					copia:SetAttribute("Projectile", moduloUnidad.Niveles[0].Projectile or "None")
+
 					copia:SetAttribute("Vitalidad", vitalidad)
 					
 					copia:SetAttribute("Fuerza", fuerza)
@@ -101,10 +104,11 @@ invocarUnidadEvento.OnServerEvent:Connect(function(jugador, unidadData)
 					copia:SetAttribute("Velocidad", velocidad)
 					copia:SetAttribute("VelocidadAtaque", velocidadAtaque)
 					copia:SetAttribute("DamageAtaque", Ataque)
-					copia:SetAttribute("RangoAtaque", rangoAtaque)
+					copia:SetAttribute("RangoAtaque", moduloUnidad.Niveles[0].RangoAtaque or 6)
 
 					copia:SetAttribute("VidaMaxima", vidaTotal)
-					
+					-- Al crear una unidad:
+					--copia:SetAttribute("UnidadId", tick() .. "_" .. nuevaUnidad.Name)--
 
 
 					copia:SetAttribute("Nivel", 0)--Asigna el nivel inicial 0
@@ -115,7 +119,7 @@ invocarUnidadEvento.OnServerEvent:Connect(function(jugador, unidadData)
 					aplicarAtributosPorNivel(copia, moduloUnidad)
 					
 					print(modeloNombre .. "Invocacion exitosa Inicia en el nivel 0 Fuerza:", fuerza, "Agilidad:", agilidad, "Velocidad:", velocidad, "Daño:", Ataque)
-
+					copia:SetAttribute("setEstado", "Idle") -- Estado inicial
 
 					-- Cálculo y aplicación del crecimiento base
 					--local crecimientoBase = 1 + (fuerza + agilidad) / 300 --Recalcular un crecimiento estable ademas junto con la nivelacion

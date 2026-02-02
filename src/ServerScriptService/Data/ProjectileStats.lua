@@ -1,9 +1,11 @@
 return {
-	Arrow = {
+	Arrow = {		--Arrow T1 Stats Hacer mas flechas con diferentes materiales Diferentes potenciadores mults de daño 
+					--Penetracion(ignorar armadura o bloqueo de daño) etc
 		speed = 90,
-		range = 60,
+		range = 1000,
 		gravity = 0.15,
-		damageMultiplier = 1,
+		damage = 15
+	--	damageMultiplier = 1,
 	},
 	FireBall = {
 		speed = 60,
