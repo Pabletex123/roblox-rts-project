@@ -55,16 +55,17 @@ if seleccion and seleccion.Value then
 end
 
 
-
 -- Al hacer clic, se alterna el valor entre activado y desactivado
 ControlButton.MouseButton1Click:Connect(function()
 	activarControl.Value = not activarControl.Value
 
 	if activarControl.Value then
 		ControlButton.Text = "Modo Control ON"
+		ControlButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0) -- Verde
 		print("✅ Modo control activado")
 	else
 		ControlButton.Text = "Modo Control OFF"
+		ControlButton.BackgroundColor3 = Color3.fromRGB(170, 0, 0) -- Rojo
 		print("⛔ Modo control desactivado")
 		seleccion.Value = nil
 		--aqui
@@ -124,7 +125,7 @@ closeBtndetalle.Size = UDim2.new(0, 30, 0, 30)
 closeBtndetalle.Position = UDim2.new(1, -35, 0, 5) -- Arriba a la derecha del Frame
 closeBtndetalle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
 closeBtndetalle.TextColor3 = Color3.new(1,1,1)
-closeBtndetalle.ZIndex = 12
+closeBtndetalle.ZIndex = 6
 closeBtndetalle.Parent = detalleCarta
 
 closeBtndetalle.MouseButton1Click:Connect(function()
@@ -219,10 +220,10 @@ for _, unidad in ipairs(unidades) do
 		detalleCarta.Parent = nil
 		detalleCarta.Parent = screenGui
 
-		detalleCarta.ZIndex = 10
-		nombre.ZIndex = 11
-		descripcion.ZIndex = 11
-
+		detalleCarta.ZIndex = 5
+		nombre.ZIndex = 5
+		descripcion.ZIndex = 5
+		imagen.ZIndex = 5
 		detalleCarta.Visible = true
 		detalleCarta.Size = UDim2.new(0, 0, 0, 0)
 
